@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://rfuq8kkviulv"]
+
+[ext_resource type="PackedScene" uid="uid://b0rrf4jpio3la" path="res://elements/house/base_house.tscn" id="1_86jub"]
+[ext_resource type="Script" uid="uid://dphp7vvjeun13" path="res://elements/house/hotel/hotel.gd" id="2_uontl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uontl"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="hotel" groups=["sleep_house"] instance=ExtResource("1_86jub")]
+script = ExtResource("2_uontl")
+speed_of_filling = 2.0
+
+[node name="MeshInstance3D" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_uontl")
+
+[node name="Timer" parent="." index="2"]
+wait_time = 0.1

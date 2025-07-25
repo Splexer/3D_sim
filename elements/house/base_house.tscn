@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0rrf4jpio3la"]
+
+[ext_resource type="Script" uid="uid://cm12ajm4yh5ue" path="res://elements/house/base_house.gd" id="1_8lmhv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uahq2"]
+size = Vector3(5, 3, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8lmhv"]
+size = Vector3(5, 3, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s1dyp"]
+
+[node name="base_house" type="StaticBody3D"]
+script = ExtResource("1_8lmhv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_uahq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0246296, 1.5, 0.0055275)
+shape = SubResource("BoxShape3D_8lmhv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="entry_pos" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+collision_layer = 3
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="entry_pos"]
+shape = SubResource("BoxShape3D_s1dyp")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.994703, 0, -0.102793, 0.102754, 0.0272587, 0.994333, 0.00280199, -0.999628, 0.0271143, -0.419688, 3.21047, 0.239061)
+text = "Занято :"
+font_size = 80
+outline_size = 24
+
+[node name="current_capacity_label" type="Label3D" parent="Label3D"]
+transform = Transform3D(1, 1.16415e-09, 3.75585e-08, -2.32831e-10, 1, 0, 3.75803e-08, 0, 1, 1.12482, -1.49012e-08, -0.116239)
+text = "0 /"
+font_size = 80
+outline_size = 24
+
+[node name="all_capacity_label" type="Label3D" parent="Label3D"]
+transform = Transform3D(1, 1.16415e-09, 3.75585e-08, -2.32831e-10, 1, 0, 3.75803e-08, 0, 1, 1.59014, -1.49012e-08, -0.164325)
+text = "5"
+font_size = 80
+outline_size = 24
+
+[node name="name_label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00839493, 0.999965, 0, -0.999965, 0.00839493, 0.104449, 3.0308, -1.42039)
+text = "Здание"
+font_size = 150
+outline_size = 16
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

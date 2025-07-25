@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dltc4oyly5hbh"]
+
+[ext_resource type="PackedScene" uid="uid://b0rrf4jpio3la" path="res://elements/house/base_house.tscn" id="1_gww5i"]
+[ext_resource type="Script" uid="uid://end6irvl1t27" path="res://elements/house/club/club.gd" id="2_u7610"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u7610"]
+albedo_color = Color(0, 0.619608, 0.172549, 1)
+
+[node name="club" groups=["fun_house"] instance=ExtResource("1_gww5i")]
+script = ExtResource("2_u7610")
+capacity = 3
+speed_of_filling = 2.0
+
+[node name="MeshInstance3D" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_u7610")
+
+[node name="Timer" parent="." index="2"]
+wait_time = 0.1

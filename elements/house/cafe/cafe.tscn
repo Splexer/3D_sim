@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj8w6rgn4l2o1"]
+
+[ext_resource type="PackedScene" uid="uid://b0rrf4jpio3la" path="res://elements/house/base_house.tscn" id="1_vrfb6"]
+[ext_resource type="Script" uid="uid://c3lwg0jyxpo75" path="res://elements/house/cafe/cafe.gd" id="2_1l7sq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l7sq"]
+albedo_color = Color(1, 0.756863, 0, 1)
+
+[node name="cafe" groups=["food_house"] instance=ExtResource("1_vrfb6")]
+script = ExtResource("2_1l7sq")
+capacity = 2
+speed_of_filling = 2.0
+
+[node name="MeshInstance3D" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1l7sq")
+
+[node name="Timer" parent="." index="2"]
+wait_time = 0.1

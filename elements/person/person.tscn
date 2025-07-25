@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhqidpwu745su"]
+
+[ext_resource type="Script" uid="uid://765su4ktss62" path="res://elements/person/person.gd" id="1_olu2j"]
+[ext_resource type="Texture2D" uid="uid://cwntnidnelt0a" path="res://assets/fun.jpg" id="2_j0v6i"]
+[ext_resource type="Texture2D" uid="uid://xu1aq0i5hwnw" path="res://assets/food.jpg" id="3_tfopc"]
+[ext_resource type="Texture2D" uid="uid://ysivhxa8087f" path="res://assets/charge.jpg" id="3_vyy6g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olu2j"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s717u"]
+material = SubResource("StandardMaterial3D_olu2j")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_olu2j"]
+
+[node name="Person" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_olu2j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_s717u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_olu2j")
+
+[node name="SleepIcon" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 1.377, -0.408)
+texture = ExtResource("3_vyy6g")
+
+[node name="Label3D" type="Label3D" parent="SleepIcon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.195, 0, 0)
+text = "100%"
+horizontal_alignment = 0
+
+[node name="FoodIcon" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, -0.0078977, 1.276, 0.085)
+flip_v = true
+texture = ExtResource("3_tfopc")
+
+[node name="Label3D" type="Label3D" parent="FoodIcon"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.195, 0, 0)
+text = "100%"
+horizontal_alignment = 0
+
+[node name="FunIcon" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 1.377, 0.572)
+flip_v = true
+texture = ExtResource("2_j0v6i")
+
+[node name="Label3D" type="Label3D" parent="FunIcon"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.195, 0, 0)
+text = "100%"
+horizontal_alignment = 0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.8
+target_desired_distance = 0.1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
